@@ -6,7 +6,7 @@ import com.cleverpine.viravaspringhelper.core.BaseResource;
 import java.util.List;
 
 public enum Resources implements BaseResource {
-    TEMPLATE;
+    TEMPLATE, MOVIES;
 
     @Override
     public String resource() {
@@ -15,6 +15,6 @@ public enum Resources implements BaseResource {
 
     @Override
     public List<BaseResource> getFullResourceList() {
-        return List.of(TEMPLATE);
+        return List.of(TEMPLATE, MOVIES);
     }
 }
