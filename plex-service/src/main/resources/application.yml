@@ -18,3 +18,24 @@ auth:
 ##    namePath: name
 #    rolesPath: resource_access.account.roles
 #    jwkSetUrl: https://virava-keycloak.thepineslab.net/realms/crc-test/protocol/openid-connect/certs
+spring:
+  datasource:
+    #jdbc-url: jdbc:sqlserver://localhost:1433;database=my-mssql;encrypt=true;trustServerCertificate=true;
+    jdbc-url: jdbc:sqlserver://127.0.0.1:1433;databaseName=my-mssql;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: P@ssw0rd
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      show-sql: true
+      database-platform: org.hibernate.dialect.SQLServerDialect
+      ddl-auto: update
+
+second-datasource:
+  datasource:
+    jdbc-url: jdbc:sqlite:/Users/stanislavarabov/Downloads/5.db
+    driverClassName: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      show-sql: true
+      database-platform: org.hibernate.community.dialect.SQLiteDialect
