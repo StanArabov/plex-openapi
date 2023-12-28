@@ -7,8 +7,12 @@ import com.cleverpine.viravaspringhelper.dto.Scope;
 import java.util.List;
 
 public enum Roles implements BaseRole {
-    USER("view-profile", List.of(Permission.of(Resources.TEMPLATE, Scope.READ))),
+    USER("client_user", List.of(Permission.of(Resources.TEMPLATE, Scope.CRUD))),
     ADMIN("manage-account", List.of(Permission.of(Resources.TEMPLATE, Scope.CRUD)));
+
+//    USER("view-profile", List.of(Permission.of(Resources.TEMPLATE, Scope.CRUD))),
+//    ADMIN("manage-account", List.of(Permission.of(Resources.TEMPLATE, Scope.CRUD))),
+//    DEFAULT_ROLES_CRC_TEST("default-roles-crc-test", List.of(Permission.of(Resources.TEMPLATE, Scope.CRUD)));
 
     private final List<Permission> permissionList;
     private final String roleName;

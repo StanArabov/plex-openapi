@@ -13,4 +13,8 @@ public @interface ViravaSecured {
     Resources resource();
 
     ScopeType[] scope();
+
+    String resourceIdParamName() default "";
+
+    boolean requireAllResourceIds() default false;
 }

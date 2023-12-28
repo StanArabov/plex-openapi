@@ -3,8 +3,18 @@ springdoc:
     url: /template-api-yml-configuration/template-api.yml
 auth:
   token:
+    jwkUrl: https://virava-keycloak.thepineslab.net/auth/realms/crc-test/protocol/openid-connect/certs
+#   jwkUrl: https://virava-keycloak.thepineslab.net/realms/crc-test/protocol/openid-connect/certs
+#    jwkSetUrl: https://virava-keycloak.thepineslab.net/realms/crc-test/protocol/openid-connect/certs
+#    secret: aa69d908-d04e-49dc-844e-49006cec3225
+    emailPath: email
     usernamePath: preferred_username
-    rolesPath: resource_access.account.roles
+    rolesPath: resource_access.crc-test.roles
     ## remove the secret and issuer if working with an API Gateway
-    secret: jwt_secret
-    issuer: issuer_name
+#auth:
+#  token:
+#    usernamePath: preferred_username
+#    emailPath: email
+##    namePath: name
+#    rolesPath: resource_access.account.roles
+#    jwkSetUrl: https://virava-keycloak.thepineslab.net/realms/crc-test/protocol/openid-connect/certs
