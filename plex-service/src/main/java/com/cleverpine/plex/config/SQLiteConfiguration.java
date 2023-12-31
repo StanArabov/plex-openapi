@@ -37,8 +37,8 @@ public class SQLiteConfiguration {
         em.setJpaVendorAdapter(vendorAdapter);
 
         HashMap<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto",
-                env.getProperty("second-datasource.datasource.jpa.hibernate.hbm2ddl.auto"));
+//        properties.put("hibernate.hbm2ddl.auto",
+//                env.getProperty("second-datasource.datasource.jpa.hibernate.hbm2ddl.auto"));
         properties.put("hibernate.dialect", env.getProperty("second-datasource.datasource.jpa.hibernate.database-platform"));
         em.setJpaPropertyMap(properties);
 
