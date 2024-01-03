@@ -4,12 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Entity
-@Table(name = "movies")
-public class Movies {
+@Table(name = "movies", indexes = @Index(name = "movie_title_index", columnList = "title", unique = false))
+public class MovieEntity {
 
     @Id
     @Column(name = "movie_id")
@@ -53,9 +52,9 @@ public class Movies {
     @Column(name = "subtitles", columnDefinition = "NVARCHAR(256)")
     private String subtitles;
 
-    protected Movies(){};
+    protected MovieEntity(){};
 
-    public Movies(String title, String description, Double rating, LocalDateTime releaseDate, Integer duration, Integer year, String director, String writer, String genres, String stars, String audio, String subtitles) {
+    public MovieEntity(String title, String description, Double rating, LocalDateTime releaseDate, Integer duration, Integer year, String director, String writer, String genres, String stars, String audio, String subtitles) {
         this.title = title;
         this.description = description;
         this.rating = rating;

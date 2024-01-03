@@ -3,51 +3,43 @@ package com.cleverpine.plex.controller;
 import com.cleverpine.plex.api.MoviesApi;
 import com.cleverpine.plex.auth.ViravaSecured;
 import com.cleverpine.plex.auth.roles.Resources;
-import com.cleverpine.plex.entity.future.*;
-import com.cleverpine.plex.projection.MovieProjection;
-import com.cleverpine.plex.repository.future.*;
-import com.cleverpine.plex.repository.legacy.MetadataItemsRepository;
+import com.cleverpine.plex.dto.MovieDto;
+import com.cleverpine.plex.model.MovieListItem;
+import com.cleverpine.plex.model.MoviesListResponse;
+import com.cleverpine.plex.service.MovieService;
+import com.cleverpine.plex.mapper.MovieMapper;
 import com.cleverpine.viravaspringhelper.dto.ScopeType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.NativeWebRequest;
 
 import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
 public class MovieController implements MoviesApi {
-
-
-    final private MetadataItemsRepository metadataItemsRepository;
-    final private MoviesRepository moviesRepository;
-
-
+    private final MovieService movieService;
+    private final MovieMapper movieMapper;
 
     @Override
     @ViravaSecured(resource = Resources.MOVIES, scope = ScopeType.READ)
     public ResponseEntity<String> apiMoviesTestGet() {
-        List<Movies> moviesList = new ArrayList<>();
-        MovieProjection[] movies = metadataItemsRepository.findMetadataAndMedia().toArray(new MovieProjection[0]);
+        movieService.simpleMovieETL();
+//        movieService.getMovieList();
+        return ResponseEntity.ok("Movie Test");
+    }
 
-        for(MovieProjection movieProjection: movies) {
-            Movies movie = new Movies(
-                    movieProjection.getTitle(),
-                    movieProjection.getDescription(),
-                    movieProjection.getRating(),
-                    movieProjection.getReleaseDate(),
-                    movieProjection.getDuration(),
-                    movieProjection.getYear(),
-                    movieProjection.getDirector(),
-                    movieProjection.getWriter(),
-                    movieProjection.getGenres(),
-                    movieProjection.getStars(),
-                    movieProjection.getAudio(),
-                    movieProjection.getSubtitles()
-            );
-            moviesList.add(movie);
-        }
-        moviesRepository.saveAll(moviesList);
-        return ResponseEntity.ok("Movie Test" + " " + moviesList.size());
+    @Override
+    public ResponseEntity<MoviesListResponse> apiMoviesGet(Integer page, Integer size) {
+        List<MovieDto> movieList = movieService.getMovieList(page, size);
+
+        MoviesListResponse response = new MoviesListResponse();
+        movieList.stream()
+                .map(movieMapper::movieDtoToMovieListItem)
+                .forEach(response::addDataItem);
+
+        return ResponseEntity.ok(response);
     }
 }
