@@ -34,7 +34,7 @@ public class MSSQLConfiguration {
     public LocalContainerEntityManagerFactoryBean movieEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(movieDataSource());
-        em.setPackagesToScan("com.cleverpine.plex");
+        em.setPackagesToScan("com.cleverpine.plex.entity.future");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

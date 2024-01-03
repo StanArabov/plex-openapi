@@ -29,7 +29,6 @@ spring:
     hibernate:
       show-sql: true
       database-platform: org.hibernate.dialect.SQLServerDialect
-      ddl-auto: update
 
 second-datasource:
   datasource:

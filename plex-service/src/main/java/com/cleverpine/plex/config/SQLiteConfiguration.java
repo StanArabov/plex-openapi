@@ -31,7 +31,7 @@ public class SQLiteConfiguration {
     public LocalContainerEntityManagerFactoryBean deviceEntityManager() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(deviceDataSource());
-        em.setPackagesToScan("com.cleverpine.plex");
+        em.setPackagesToScan("com.cleverpine.plex.entity.legacy");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
