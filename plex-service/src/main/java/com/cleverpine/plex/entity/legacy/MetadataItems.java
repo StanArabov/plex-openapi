@@ -48,7 +48,7 @@ public class MetadataItems {
     @Column(name = "tagline")
     private String tagline;
 
-    @Column(name = "summary")
+    @Column(name = "summary", columnDefinition = "TEXT")
     private String summary;
 
     @Column(name = "trivia")

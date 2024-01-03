@@ -1,9 +1,8 @@
 package com.cleverpine.plex.projection;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-public interface MovieDto {
+public interface MovieProjection {
     String getTitle();
 
     String getDescription();
@@ -16,13 +15,15 @@ public interface MovieDto {
 
     Integer getYear();
 
-    List<String> getDirector();
+    String getDirector();
 
-    List<String>  getWriters();
+    String getWriter();
 
-    List<String>  getActors();
+    String  getStars();
 
-    List<String> getGenres();
+    String getGenres();
 
-    List<String>  gerLanguage();
+    String  getAudio();
+
+    String getSubtitles();
 }
