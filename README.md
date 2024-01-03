@@ -227,3 +227,4 @@ seen in the SystemController. Locale is determined by the _Accept-Language Heade
 In Run/Debug Configurations -> Before Launch -> Add Maven Goal -> clean compile.
 
 * Make sure the goal is executed for the main project
+# plex
